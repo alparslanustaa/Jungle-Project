@@ -3,7 +3,15 @@
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
+  <%# When cart empty %>
+  <% if enhanced_cart.empty?%>
+  <div class="alert alert-primary" role="alert">
+    <h3>Please make sure to add some product to your cart!</h3>
+    <%= link_to 'Homa Page', :root %>
+  </div>
 
+  <%# When cart not empty %>
+  <% else %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -48,5 +56,6 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 
 </section>
