@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Visitor navigates to product detail page", type: :feature, js: true do
+RSpec.feature "Visitor adds item and navigates to cart", type: :feature, js: true do
   before :each do
     @category = Category.create! name: 'Apparel'
 
@@ -15,14 +15,15 @@ RSpec.feature "Visitor navigates to product detail page", type: :feature, js: tr
     end
   end
 
-  scenario 'They see product detail page' do
+  scenario 'They see product added to cart' do
     visit root_path
+    expect(page).to have_content("My Cart (0)")
+    # save_screenshot
 
-    first(".product a").click
-    # commented out b/c it's for debugging only
-    # save_and_open_screenshot
+    first(".product button").click
+    # save_screenshot
 
-    expect(page).to have_css 'article.product-detail'
+    expect(page).to have_content("My Cart (1)")
   end
 
 end
